@@ -85,9 +85,10 @@ local layouts = {
     {
         name = "Demo",
         zones = {
-            { x = 0,    w = 0.25, y = 0, h = 1, label = "Notes 1" },
-            { x = 0.25, w = 0.25, y = 0, h = 1, label = "Notes 2" },
-            { x = 0.5,  w = 0.5,  y = 0, h = 1, label = "Main" }
+            { x = 0,    w = 0.25, y = 0,   h = 0.5, label = "Notes 1a" },
+            { x = 0,    w = 0.25, y = 0.5, h = 0.5, label = "Notes 1b" },
+            { x = 0.25, w = 0.25, y = 0,   h = 1,   label = "Notes 2" },
+            { x = 0.5,  w = 0.5,  y = 0,   h = 1,   label = "Main" }
         }
     }
 }
