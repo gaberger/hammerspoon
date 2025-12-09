@@ -3,18 +3,7 @@
 
 local gap = 10
 
--- ============================================
--- BUILT-IN GRID SYSTEM (reliable!)
--- ============================================
-
--- Configure grid: 4 columns, 2 rows (for your split columns 1 and 4)
-hs.grid.setGrid('4x2')
-hs.grid.setMargins({gap, gap})
-
--- Show grid with Ctrl+Alt+G
-hs.hotkey.bind({"ctrl", "alt"}, "G", function()
-    hs.grid.show()
-end)
+-- Grid hotkey (Ctrl+Alt+G) is defined later after zone functions are declared
 
 -- ============================================
 -- KEYBOARD SHORTCUTS FOR QUICK SNAPPING
@@ -207,6 +196,25 @@ local function hideZonePreview()
         zonePreview = nil
     end
 end
+
+-- Show grid with Ctrl+Alt+G (toggle zones overlay)
+local gridVisible = false
+hs.hotkey.bind({"ctrl", "alt"}, "G", function()
+    if gridVisible then
+        hideZonePreview()
+        gridVisible = false
+    else
+        showAllZones(nil) -- Show all zones with none highlighted
+        gridVisible = true
+        -- Auto-hide after 3 seconds
+        hs.timer.doAfter(3, function()
+            if gridVisible then
+                hideZonePreview()
+                gridVisible = false
+            end
+        end)
+    end
+end)
 
 -- Get zone for a window based on its center position
 local function getZoneForWindow(win)
